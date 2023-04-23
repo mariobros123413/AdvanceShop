@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Advance</b>Shop',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -311,17 +311,10 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
         ['header' => 'Gestión de Productos'],
         [
             'text' => 'Añadir un producto',
-            'route'  => 'gestionarProducto',
+            'url'  => '/dashboard/gestionarProducto',
             'icon' => 'fas fa-fw fa-car'
             // 'data' => [
             //     'test-one' => 'content-one',
@@ -330,11 +323,11 @@ return [
         ],
         [
             'text' => 'Edición de Categorías',
-            'route'  => 'gestionarProducto',
+            // 'route'  => 'dashboard/gestionarCategoria',
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
-            'text'    => 'multilevel',
+            'text'    => 'Gestionar Categorías',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
@@ -371,19 +364,19 @@ return [
                 ],
             ],
         ],
-        ['header' => 'labels'],
+        ['header' => 'Ver Pedidos'],
         [
-            'text'       => 'important',
+            'text'       => 'Cancelados',
             'icon_color' => 'red',
             'url'        => '#',
         ],
         [
-            'text'       => 'warning',
+            'text'       => 'En Progreso',
             'icon_color' => 'yellow',
             'url'        => '#',
         ],
         [
-            'text'       => 'information',
+            'text'       => 'Completados',
             'icon_color' => 'cyan',
             'url'        => '#',
         ],

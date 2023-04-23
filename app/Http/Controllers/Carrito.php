@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class Carrito extends Controller
 {
-    public function mostrarVista()
-{
-    return view('miVista');
-}
+     public function mostrarVista()
+    {
+        return "hola";
+     }
 
 }

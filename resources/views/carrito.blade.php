@@ -7,6 +7,6 @@
     <title>AS-carrito</title>
 </head>
 <body>
-    <p>hola</p>
+    <p>hola carrito</p>
 </body>
 </html>

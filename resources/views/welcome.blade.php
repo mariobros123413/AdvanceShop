@@ -99,10 +99,13 @@
 <head>
     <meta charset="UTF-8">
     <title>AdvanceShop</title>
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
-    
+          <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+          
+
 </head>
 	<body>
 	
@@ -122,9 +125,11 @@
 							<li class="nav-item">
 								<a class="nav-link" href="{{route('pedidos')}}">Tus Pedidos</a>
 							</li>
-							
 							<li class="nav-item">
-								<a class="nav-link" href="{{route('carrito')}}">Carrito</a>
+								<a class="nav-link" href="{{route('productos')}}">Productos</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{url('/carrito')}}">Carrito</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="{{route('login')}}">Iniciar sesión</a>
@@ -144,26 +149,6 @@
 			</div>
 		</main>
 
-		<div class="productos-container">
-			@foreach ($productos as $producto)
-				<div class="producto">
-				<a href="#">
-					<div class="img-container">
-					<img src="{{ $producto->imagen }}" alt="{{ $producto->nombre }}">
-					<span class="promo">{{ $producto->marca }}</span>
-					</div>
-				</a>
-				<div class="info-container">
-					
-					<h3>{{$producto->nombproducto }}</h3>
-					<strong>${{ $producto->precio }}</strong> @csrf
-            <input type="hidden" name="id_producto" value="{{ $producto->id }}">
-            <button type="submit" class="add-cart">Añadir al carrito</button>
-          
-				</div>
-				</div>
-			@endforeach
-		</div>
-		
+</body>
 	
 </html>

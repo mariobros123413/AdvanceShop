@@ -104,7 +104,6 @@
 <head>
     <meta charset="UTF-8">
     <title>AdvanceShop</title>
-<<<<<<< HEAD
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -180,58 +179,4 @@
     </div>
 </body>
 
-=======
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-          crossorigin="anonymous">
-          <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-          
-
-</head>
-	<body>
-	
-		<header>
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-				<div class="container">
-					<a class="navbar-brand" href="/"><img src="https://scontent.fvvi1-1.fna.fbcdn.net/v/t1.15752-9/342650874_943976150279978_1244660785714073715_n.png?_nc_cat=111&ccb=1-7&_nc_sid=ae9488&_nc_ohc=E3GKfjqOBToAX9QVSEI&_nc_ht=scontent.fvvi1-1.fna&oh=03_AdQwIcsWfQ4USU_LywMiihpF7She2Vhe7zAElAy-dOxxVw&oe=646BCDB2" class="logo">
-					</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarNav">
-						<ul class="navbar-nav ml-auto">
-							<li class="nav-item active">
-								<a class="nav-link" href="/">Inicio</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="{{route('pedidos')}}">Tus Pedidos</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="{{route('productos')}}">Productos</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="{{url('/carrito')}}">Carrito</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="{{route('login')}}">Iniciar sesión</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</header>
-	
-		<main>
-			<div class="jumbotron">
-				<div class="container">
-					<h1 class="display-4">Bienvenido a AdvanceShop</h1>
-					<p class="lead">La mejor tienda online para tus compras</p>
-				</div>
-			</div>
-		</main>
-
-</body>
-	
->>>>>>> cdb88c684fa5ac261cb0d2a289012d5e5299a91d
 </html>

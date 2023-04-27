@@ -37,11 +37,7 @@ class producto extends Model
         return $this->hasMany(carrito::class) and $this->belongsTo(carrito::class);
     }
     protected $cartAttributes = [
-<<<<<<< HEAD
         'nombproducto',
-=======
-        'nombproducto',
->>>>>>> cdb88c684fa5ac261cb0d2a289012d5e5299a91d
         'precio',
     ];
     protected $guarded = [];

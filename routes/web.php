@@ -3,6 +3,12 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\carrito;
+use App\Http\Livewire\ShopComponent;
+use Livewire\Livewire;
+use App\Http\Livewire\MostrarProductos;
+use App\Http\Livewire\GestionarProductos;
+use App\Http\Controllers\productoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,38 +34,39 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::get('/mostrar-vista', 'carrito@mostrarVista');
 
-Route::get('/mostrarProductos', 'gestionarProducto@mostrarProductos');
+Route::get('/producto', [MostrarProductos::class,'render'])->name('productos');
+Route::get('/', 'App\Http\Controllers\productoController@index')->name('productos.index'); //productos en welcome
 
 // RUTAS DESDE EL CLIENTE
-Route::get('/', 'App\Http\Controllers\productoController@index')->name('productos.index');
 
-Route::view('carrito', 'carrito')->name('carrito'); //importante para visualizar el html php
 Route::view('pedidos', 'pedidos')->name('pedidos'); // view('ruta de la vista', )
 
-// Route::post('/cart/add/{id}', [CarritoController::class, 'addToCart'])->name('cart.add');
+    //carrito
+    
+    // Route::get('/carrito', [carrito::class, 'index'])->name('carrito');
+
+    Route::POST('/carrito/agregarProducto/{idproducto}',[carrito::class, 'agregarProducto'] )->name('carrito.agregarProducto');
 
 
 
-//RUTAS DESDE EL ADMINISTRADOR
-Route::get('dashboard/gestionarProducto', 'App\Http\Controllers\gestionarProductoController@mostrarProductos');
+//RUTAS DESDE EL ADMINISTRADOR\\\
 
-// Route::get('/dashboard/gestionarProducto', 'dashboard.gestionarProductoController@mostrarProductos')->name('dashboard.gestionarProducto');
-// Route::view('dashboard/gestionarProducto', 'dashboard/gestionarProducto')->name('dashboard/gestionarProducto');
+Route::get('/producto', [MostrarProductos::class,'render'])->name('productos');
 
-Route::get('/gestionarProductoController', [app\Http\Controllers\GestionarProductoController::class, 'mostrarProductos'])->name('gestionarProductoController');
+Route::post('/dashboard', 'App\Http\Livewire\GestionarProductos@CrearProducto')->name('CrearProducto');
 
 // Route::view('dashboard.dashboard', 'dashboard.dashboard')->name('dashboard');
 //  Route::get('/dashboard', function () {
 //     return view('/dashboard/dashboard');
 //   });
 
-
 //RUTA LOGIN y REGISTRO
-// Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth.admin')->name('dashboard.index');
-Route::get('/dashboard', [dashboardController::class, 'index'])->name('dashboard.index');
-
+ Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth.admin')->name('dashboard');
+ Route::get('/dashboard', [dashboardController::class, 'index'])->name('dashboard');
+ Route::middleware(['auth:sanctum','verified'])->get('/dashboard',function(){
+    return view('dashboard/dashboard');
+ })->name('dashboard');
 
 use Illuminate\Support\Facades\DB;
 

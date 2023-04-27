@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 use App\models\producto;
 use Illuminate\Http\Request;
-
+use DB;
 class productoController extends Controller
 {
     public function index(){
+        
     $productos = producto::all();
-    return view('/welcome', compact('productos'));
+    return view('welcome', compact('productos'));
     }
 }

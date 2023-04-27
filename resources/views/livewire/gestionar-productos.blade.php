@@ -75,12 +75,18 @@
         }
         
     </style>
+<<<<<<< HEAD
     <?php
     $producto=$productos;
     ?>
     <div class="px-6 py-y4 flexasd">
         <input type="text" wire:model="search" class="w-full" placeholder="Búsqueda por Nombre y Descripción">
         @include('livewire.create-producto')
+=======
+    <div class="px-6 py-y4 flexasd">
+        <input type="text" wire:model="search" class="w-full" placeholder="Búsqueda por Nombre y Descripción">
+        @livewire('create-producto')
+>>>>>>> cdb88c684fa5ac261cb0d2a289012d5e5299a91d
     </div>
 
     <table class="table">
@@ -107,7 +113,10 @@
                 <td>{{$producto->stock}}</td>
                 <td>
                     <button>Editar</button>
+<<<<<<< HEAD
                     
+=======
+>>>>>>> cdb88c684fa5ac261cb0d2a289012d5e5299a91d
                     <button>Visualizar</button>
                 </td>
             </tr>

@@ -3,7 +3,10 @@
 namespace App\Http\Livewire;
 use App\Models\producto;
 use Livewire\Component;
+<<<<<<< HEAD
 use Illuminate\Http\Request;
+=======
+>>>>>>> cdb88c684fa5ac261cb0d2a289012d5e5299a91d
 
 class GestionarProductos extends Component
 {
@@ -12,8 +15,26 @@ class GestionarProductos extends Component
     public $sort = 'idproducto';
     public $direction ='desc';
 
+<<<<<<< HEAD
     public function mount(){
         //
+=======
+    // public $nombre;
+    // public $descripcion;
+    // public $precio;
+    // public $marca;
+    // public $idCategoria;
+    // public $stock;
+    // , $nombProducto, $descripcion, $precio, $marca, $idCategoria, $stock
+    public function mount(){
+        // $this->idP=$idProducto;
+        // $this->nombre=$nombProducto;
+        // $this->descripcion=$descripcion;
+        // $this->precio=$precio;
+        // $this->marca=$precio;
+        // $this->idCategoria=$idCategoria;
+        // $this->stock=$stock;
+>>>>>>> cdb88c684fa5ac261cb0d2a289012d5e5299a91d
     }
     public function render()
     {
@@ -38,6 +59,7 @@ class GestionarProductos extends Component
             $this->direction = 'asc';
         }
     }
+<<<<<<< HEAD
 
     public function CrearProducto(Request $request){
 
@@ -64,4 +86,6 @@ class GestionarProductos extends Component
         return redirect('/dashboard');
 }
     
+=======
+>>>>>>> cdb88c684fa5ac261cb0d2a289012d5e5299a91d
 }

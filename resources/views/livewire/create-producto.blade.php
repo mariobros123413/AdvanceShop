@@ -1,4 +1,5 @@
 <div>
+<<<<<<< HEAD
     <button onclick="abrirVentana()">Agregrar un Producto</button>
 
 
@@ -54,4 +55,11 @@
 
 
 
+=======
+    <button class="flexasd">
+        <i class="fas fa-edit"></i>
+        Crear un producto
+      </button>
+      
+>>>>>>> cdb88c684fa5ac261cb0d2a289012d5e5299a91d
 </div>

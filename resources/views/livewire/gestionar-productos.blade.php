@@ -107,10 +107,7 @@
                 <td>{{$producto->stock}}</td>
                 <td>
                     <button>Editar</button>
-<<<<<<< HEAD
                     
-=======
->>>>>>> cdb88c684fa5ac261cb0d2a289012d5e5299a91d
                     <button>Visualizar</button>
                 </td>
             </tr>

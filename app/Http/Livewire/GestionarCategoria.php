@@ -1,15 +1,15 @@
 <?php
 
 namespace App\Http\Livewire;
-use App\Models\producto;
-use Livewire\Component;
-use Illuminate\Http\Request;
 
-class GestionarProductos extends Component
+use Livewire\Component;
+use App\Models\categoria;
+use Illuminate\Http\Request;
+class GestionarCategoria extends Component
 {
     public $search;
     public $idP;
-    public $sort = 'idproducto';
+    public $sort = 'idcategoria';
     public $direction ='desc';
 
     public function mount(){
@@ -18,10 +18,10 @@ class GestionarProductos extends Component
     public function render()
     {
         // $productos = producto::all();
-        $productos = producto::where('nombproducto','like','%' . $this->search . '%')
+        $categorias = categoria::where('nombcategoria','like','%' . $this->search . '%')
                                ->orwhere('descripcion','like','%' . $this->search . '%')
                                ->orderBy($this->sort,$this->direction)->get();
-        return view('livewire.gestionar-productos', compact('productos'));
+        return view('livewire.gestionar-categoria', compact('categorias'));
     }
     
     public function order($sort){
@@ -39,24 +39,20 @@ class GestionarProductos extends Component
         }
     }
 
-    public function CrearProducto(Request $request){
+    public function CrearCategoria(Request $request){
 
         
-        $producto = [
-            'idproducto' => $request->get('id'),
-            'nombproducto' => $request->get('nombre'),
-            'descripcion' => $request->get('descripcion'),
-            'precio' => $request->get('precio'),
-            'marca' =>  $request->get('marca'),
-            'idcategoria' =>  $request->get('idcategoria'),
-            'stock' => $request->get('stock')
+        $categoria = [
+            'idcategoria' => $request->get('id'),
+            'nombcategoria' => $request->get('nombre'),
+            'descripcion' => $request->get('descripcion')
         ];
         
-        producto::create($producto);
+        categoria::create($categoria);
 
 
 
-        $total = producto:: all()->count();
+        $total = categoria:: all()->count();
         
         
         

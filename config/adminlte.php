@@ -253,7 +253,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'dashboard',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -311,10 +311,10 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        ['header' => 'Gestión de Productos'],
+        ['header' => 'Gestiones'],
         [
-            'text' => 'Añadir un producto',
-            'url'  => '/dashboard/gestionarProducto',
+            'text' => 'Gestión de categoría',
+            'route'  => 'categorias',
             'icon' => 'fas fa-fw fa-car'
             // 'data' => [
             //     'test-one' => 'content-one',
@@ -323,7 +323,7 @@ return [
         ],
         [
             'text' => 'Edición de Categorías',
-            // 'route'  => 'dashboard/gestionarCategoria',
+            // 'url'  => 'livewire.crear-categoria',
             'icon' => 'fas fa-fw fa-lock',
         ],
         [

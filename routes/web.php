@@ -9,6 +9,8 @@ use Livewire\Livewire;
 use App\Http\Livewire\MostrarProductos;
 use App\Http\Livewire\GestionarProductos;
 use App\Http\Controllers\productoController;
+use App\Http\Livewire\CrearCategoria;
+use App\Http\Livewire\GestionarCategoria;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,17 +36,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
+// RUTAS DESDE EL CLIENTE
+//////////MOSTRAR PRODUCTOS EN TIENDA
 Route::get('/producto', [MostrarProductos::class,'render'])->name('productos');
 Route::get('/', 'App\Http\Controllers\productoController@index')->name('productos.index'); //productos en welcome
-
-// Route::get('/mostrarProductos', 'gestionarProducto@mostrarProductos'); //esto es para mostrar productos normalmente
-
-
-Route::get('/producto', [MostrarProductos::class,'render'])->name('productos');
-// Route::get('/mostrarProductos', 'gestionarProducto@mostrarProductos');
-// RUTAS DESDE EL CLIENTE
 Route::view('pedidos', 'pedidos')->name('pedidos'); // view('ruta de la vista', )
+
+
+// Route::view('pedidos', 'pedidos')->name('pedidos'); // view('ruta de la vista', )
 
     //carrito
     
@@ -55,11 +54,14 @@ Route::view('pedidos', 'pedidos')->name('pedidos'); // view('ruta de la vista', 
 
 
 //RUTAS DESDE EL ADMINISTRADOR\\\
-
-Route::get('/producto', [MostrarProductos::class,'render'])->name('productos');
-
-Route::post('/dashboard', 'App\Http\Livewire\GestionarProductos@CrearProducto')->name('CrearProducto');
-
+    //////MOSTRAR PRODUCTOS
+    Route::get('/producto', [MostrarProductos::class,'render'])->name('productos');
+    //CREAR PRODUCTOS
+    Route::post('/dashboard', 'App\Http\Livewire\GestionarProductos@CrearProducto')->name('CrearProducto');
+    //////MOSTRAR CATEGORIA
+    Route::get('/categoria', [GestionarCategoria::class,'render'])->name('categorias');
+    /////CREAR CATEGORIA
+    Route::GET('/categorias', 'App\Http\Livewire\GestionarCategoria@CrearCategoria')->name('CrearCategoria');
 // Route::view('dashboard.dashboard', 'dashboard.dashboard')->name('dashboard');
 //  Route::get('/dashboard', function () {
 //     return view('/dashboard/dashboard');

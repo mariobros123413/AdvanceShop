@@ -47,12 +47,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/carrito', 'App\Http\Controllers\carritoController@index')->name('carrito');
     ///AÑADIR AL CARRITO UN PRODUCTO
     Route::post('/carrito/{idproducto}', [carritoController::class,'agregarProducto'])->name('carrito.agregar');
-    /////
+    /////AGRADECIMIENTO EN CARRITO
+    Route::get('/carrito/{status}', 'carritoController@estado')->name('carrito.estado');
     //////PAGAR
     // Route::post('/checkout/{total}',  [PagoController::class,'pay'])->name('checkout');
     // Route::get('/checkout/{total}', 'App\Http\Controllers\PagoController@pay')->name('checkout');
     // Route::get('/paypal/{total}', 'App\Http\Controllers\PayPalService')->name('paypal');
-    Route::get('/paypal/{total}', [PaymentController::class,'payWithPaypal'])->name('paypal');
+    Route::post('/paypal', [PaymentController::class,'payWithPaypal'])->name('paypal');
 
      Route::get('/status', [PaymentController::class,'payPalStatus'])->name('status'); //procesar status del pago
     // Route::get('/status', 'PaymentController@payPalStatus')->name('status');

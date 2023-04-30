@@ -74,12 +74,12 @@
                                         <td>Total</td>
                                         <td>{{ $total }}</td>
                                         <td>
-                                            <form
-                                                action="{{ url('paypal',['total' => $total]) }}" method="get">
+                                            <form action="{{ url('paypal') }}" method="post">
                                                 @csrf
-                                                <input type="hidden" name="id_producto" value="{{ $total }}">
+                                                <input type="hidden" name="total" value="{{ $total }}">
                                                 <button type="submit" class="add-cart">Pagar con PayPal</button>
                                             </form>
+
                                         </td>
                                     </tr>
                                 </tbody>

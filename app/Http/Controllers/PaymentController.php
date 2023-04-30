@@ -29,13 +29,20 @@ class PaymentController extends Controller
 
     }
 
-    public function payWithPaypal()
-    {
+    public function payWithPaypal(Request $request)
+    {$total = $request->input('total');
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
 
         $amount = new Amount();
-        $amount->setTotal('1.00');
+
+        $value = (float) $total;
+
+
+        // $numero_flotante = floatval($total);
+        // $numero_decimal = number_format($total,2,'.','');
+
+        $amount->setTotal($value);
         $amount->setCurrency('USD');
 
         

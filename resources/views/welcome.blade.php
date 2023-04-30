@@ -138,7 +138,7 @@
                             <a class="nav-link" href="{{ route('productos') }}">Productos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/carrito') }}">Carrito</a>
+                            <a class="nav-link" href="{{ url('carrito') }}">Carrito</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>
@@ -169,9 +169,12 @@
                 <div class="info-container">
 
                     <h3>{{ $producto->nombproducto }}</h3>
-                    <strong>${{ $producto->precio }}</strong> @csrf
-                    <input type="hidden" name="id_producto" value="{{ $producto->id }}">
-                    <button type="submit" class="add-cart">Añadir al carrito</button>
+                    <strong>${{ $producto->precio }}</strong>
+                    <form action="{{ route('carrito.agregar', ['idproducto' => $producto->idproducto]) }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id_producto" value="{{ $producto->idproducto }}">
+                        <button type="submit" class="add-cart">Añadir al carrito</button>
+                    </form>
 
                 </div>
             </div>

@@ -10,7 +10,7 @@ class GestionarCategoria extends Component
     public $search;
     public $idP;
     public $sort = 'idcategoria';
-    public $direction ='desc';
+    public $direction ='asc';
 
     public function mount(){
         //

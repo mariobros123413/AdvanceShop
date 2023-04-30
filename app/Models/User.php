@@ -54,7 +54,9 @@ class User extends Authenticatable
     public function adminlte_profile_url(){
         return 'profile/username';
     }
-    
+    public function user(){
+        return $this->hasMany(carrito::class);
+    }
     // public function verifRol(){
     //     if(get_current_user.adminlte_desc == "administrador"){
     //         return '/dashboard';

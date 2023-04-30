@@ -8,20 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class carrito extends Model
 {
     protected $table = 'carrito';
+    protected $primaryKey = ['idusers', 'idproducto'];
 
-    protected $primaryKey = 'idCliente, idProducto';
-
+    public $incrementing = false;
     public $timestamps = false;
 
     protected $fillable = [
 
-        'idCliente',
-        'idProducto'
+        'idusers',
+        'idproducto',
+        'cantidad'
 
     ];
 
     public function cliente(){
-        return $this->belongsTo(cliente::class) and $this->hasMany(cliente::class);
+        return $this->belongsTo(user::class) and $this->hasMany(user::class);
     }
 
     public function producto(){

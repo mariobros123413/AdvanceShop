@@ -3,12 +3,13 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardController;
-use App\Http\Controllers\carrito;
+use App\Http\Controllers\carritoController;
 use App\Http\Livewire\ShopComponent;
 use Livewire\Livewire;
 use App\Http\Livewire\MostrarProductos;
 use App\Http\Livewire\GestionarProductos;
 use App\Http\Controllers\productoController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Livewire\CrearCategoria;
 use App\Http\Livewire\GestionarCategoria;
 /*
@@ -37,27 +38,31 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 // RUTAS DESDE EL CLIENTE
-//////////MOSTRAR PRODUCTOS EN TIENDA
-Route::get('/producto', [MostrarProductos::class,'render'])->name('productos');
-Route::get('/', 'App\Http\Controllers\productoController@index')->name('productos.index'); //productos en welcome
-Route::view('pedidos', 'pedidos')->name('pedidos'); // view('ruta de la vista', )
+    //////////MOSTRAR PRODUCTOS EN TIENDA
+    Route::get('/producto', [MostrarProductos::class,'render'])->name('productos');
+    Route::get('/', 'App\Http\Controllers\productoController@index')->name('productos.index'); //productos en welcome
+    Route::view('pedidos', 'pedidos')->name('pedidos'); // view('ruta de la vista', )
 
+    /////VER EL CARRITO
+    Route::get('/carrito', 'App\Http\Controllers\carritoController@index')->name('carrito');
+    ///AÑADIR AL CARRITO UN PRODUCTO
+    Route::post('/carrito/{idproducto}', [carritoController::class,'agregarProducto'])->name('carrito.agregar');
+    /////
+    //////PAGAR
+    // Route::post('/checkout/{total}',  [PagoController::class,'pay'])->name('checkout');
+    // Route::get('/checkout/{total}', 'App\Http\Controllers\PagoController@pay')->name('checkout');
+    // Route::get('/paypal/{total}', 'App\Http\Controllers\PayPalService')->name('paypal');
+    Route::get('/paypal/{total}', [PaymentController::class,'payWithPaypal'])->name('paypal');
 
-// Route::view('pedidos', 'pedidos')->name('pedidos'); // view('ruta de la vista', )
-
-    //carrito
-    
-    // Route::get('/carrito', [carrito::class, 'index'])->name('carrito');
-
-    Route::POST('/carrito/agregarProducto/{idproducto}',[carrito::class, 'agregarProducto'] )->name('carrito.agregarProducto');
-
-
+     Route::get('/status', [PaymentController::class,'payPalStatus'])->name('status'); //procesar status del pago
+    // Route::get('/status', 'PaymentController@payPalStatus')->name('status');
 
 //RUTAS DESDE EL ADMINISTRADOR\\\
     //////MOSTRAR PRODUCTOS
     Route::get('/producto', [MostrarProductos::class,'render'])->name('productos');
     //CREAR PRODUCTOS
     Route::post('/dashboard', 'App\Http\Livewire\GestionarProductos@CrearProducto')->name('CrearProducto');
+
     //////MOSTRAR CATEGORIA
     Route::get('/categoria', [GestionarCategoria::class,'render'])->name('categorias');
     /////CREAR CATEGORIA

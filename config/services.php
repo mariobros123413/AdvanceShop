@@ -14,6 +14,13 @@ return [
     |
     */
 
+'paypal' => [
+    'base_uri' =>env('PAYPAL_BASE_URI'),
+    'cliente_id'=>env('PAYPAL_CLIENTE_ID'),
+    'cliente_secret' => env('PAYPAL_CLIENTE_SECRET'),
+    'class' => App\Http\Services\PayPalService::class,
+],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),

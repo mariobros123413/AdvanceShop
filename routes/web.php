@@ -12,6 +12,9 @@ use App\Http\Controllers\productoController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Livewire\CrearCategoria;
 use App\Http\Livewire\GestionarCategoria;
+use App\Http\Controllers\PerfilController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,6 +41,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 // RUTAS DESDE EL CLIENTE
+    ////////VER MI PERFIL
+    Route::get('/perfil', [PerfilController::class,'index'])->name('perfil');
+    ///////CAMBIAR USERNAME
+    Route::post('/perfil/cambiarcambiarusername', 'App\Http\Controllers\PerfilController@cambiarUsername')->name('perfil.cambiarusername');
+    //////CAMBIAR EMAIL
+    Route::post('/perfil/cambiaremail', 'App\Http\Controllers\PerfilController@cambiarEmail')->name('perfil.cambiaremail');
+    //////CAMBIAR TELEFONO
+    Route::post('/perfil/cambiartelefono', 'App\Http\Controllers\PerfilController@cambiarTelefono')->name('perfil.cambiartelefono');
+    //////CAMBIAR DIRECCION
+    Route::post('/perfil/cambiardireccion', 'App\Http\Controllers\PerfilController@cambiarDireccion')->name('perfil.cambiardireccion');
+
     //////////MOSTRAR PRODUCTOS EN TIENDA
     Route::get('/producto', [MostrarProductos::class,'render'])->name('productos');
     Route::get('/', 'App\Http\Controllers\productoController@index')->name('productos.index'); //productos en welcome

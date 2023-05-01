@@ -63,5 +63,7 @@ class GestionarProductos extends Component
         //Session::flash('message', 'Felicitaciones .! Niño Registrado Correctamente ...');
         return redirect('/dashboard');
 }
-    
+    public function editarProducto(){
+        
+    }
 }

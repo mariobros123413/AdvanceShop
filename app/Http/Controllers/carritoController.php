@@ -93,11 +93,13 @@ class carritoController extends Controller
                 $producto->save();
             }
             carrito::where('idusers', auth()->user()->id)->delete();
+            return redirect()->route('carrito')->with('success', 'Gracias! El pago a través de PayPal se ha ralizado correctamente.');
 
         } else {
-            //mensaje de error al cliente
+            return redirect()->route('carrito')->with('error', 'Ha ocurrido un error al procesar el pago.');
+
         }
-        return redirect()->route('carrito');
+        // return redirect()->route('carrito');
     }
 
     public function incrementar($nombproducto)

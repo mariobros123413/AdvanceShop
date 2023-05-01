@@ -5,24 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class direccionEnvio extends Model
+class direccionenvio extends Model
 {
-    protected $table = 'direccionEnvio';
+    protected $table = 'direccionenvio';
 
-    protected $primaryKey = 'idDireccionEnvio';
+    protected $primaryKey = 'iddireccionenvio';
 
     public $timestamps = false;
 
     protected $fillable = [
 
-        'idDireccionEnvio',
+        'iddireccionenvio',
         'calle',
         'numCasa',
         'ciudad'
 
     ];
-    public function cliente(){
-        return $this->belongsTo(cliente::class);
+    public function users(){
+        return $this->belongsTo(users::class);
     }
     protected $guarded = [];
 }

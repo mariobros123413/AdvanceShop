@@ -140,9 +140,15 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('carrito') }}">Carrito</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>
-                        </li>
+                        @if (Auth::check())
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('perfil') }}">Mi perfil</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -159,26 +165,27 @@
     </main>
     <div class="productos-container">
         @foreach ($productos as $producto)
-        @if ($producto->stock >0)
-            <div class="producto">
-                <a href="#">
-                    <div class="img-container">
-                        <img src="{{ $producto->imagen }}" alt="{{ $producto->nombre }}">
-                        <span class="promo">{{ $producto->marca }}</span>
+            @if ($producto->stock > 0)
+                <div class="producto">
+                    <a href="#">
+                        <div class="img-container">
+                            <img src="{{ $producto->imagen }}" alt="{{ $producto->nombre }}">
+                            <span class="promo">{{ $producto->marca }}</span>
+                        </div>
+                    </a>
+                    <div class="info-container">
+
+                        <h3>{{ $producto->nombproducto }}</h3>
+                        <strong>${{ $producto->precio }}</strong>
+                        <form action="{{ route('carrito.agregar', ['idproducto' => $producto->idproducto]) }}"
+                            method="POST">
+                            @csrf
+                            <input type="hidden" name="id_producto" value="{{ $producto->idproducto }}">
+                            <button type="submit" class="add-cart">Añadir al carrito</button>
+                        </form>
+
                     </div>
-                </a>
-                <div class="info-container">
-
-                    <h3>{{ $producto->nombproducto }}</h3>
-                    <strong>${{ $producto->precio }}</strong>
-                    <form action="{{ route('carrito.agregar', ['idproducto' => $producto->idproducto]) }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="id_producto" value="{{ $producto->idproducto }}">
-                        <button type="submit" class="add-cart">Añadir al carrito</button>
-                    </form>
-
                 </div>
-            </div>
             @endif
         @endforeach
     </div>

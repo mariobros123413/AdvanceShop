@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Carrito de compras</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 </head>
 <style>
     table {
@@ -29,6 +33,7 @@
 </style>
 
 <body class="skin-blue sidebar-mini">
+
     <div class="wrapper">
         <!-- Main content -->
         <section class="content">
@@ -102,23 +107,7 @@
                 </div>
             </div>
         </section>
-
-
-        <!-- AdminLTE JS -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.18/js/adminlte.min.js"></script>
     </div>
-    <livewire:scripts />
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Livewire.on('carritoActualizado', function() {
-                // Actualiza el carrito con los nuevos elementos
-            });
-        });
-    </script>
-
-
 
 </body>
 

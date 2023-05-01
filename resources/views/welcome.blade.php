@@ -159,6 +159,7 @@
     </main>
     <div class="productos-container">
         @foreach ($productos as $producto)
+        @if ($producto->stock >0)
             <div class="producto">
                 <a href="#">
                     <div class="img-container">
@@ -178,6 +179,7 @@
 
                 </div>
             </div>
+            @endif
         @endforeach
     </div>
 </body>

@@ -15,6 +15,6 @@ class PagoController extends Controller
     public function __construct()
     {
         $paypalconfig = Config::get('paypal');
-        $apiContext = new \PayPal\Rest\ApiContext()
+        $apiContext = new \PayPal\Rest\ApiContext();
     }
 }

@@ -44,11 +44,19 @@ Route::middleware('auth')->group(function () {
     Route::view('pedidos', 'pedidos')->name('pedidos'); // view('ruta de la vista', )
 
     /////VER EL CARRITO
-    Route::get('/carrito', 'App\Http\Controllers\carritoController@index')->name('carrito');
+    Route::get('/carrito', [carritoController::class,'index'])->name('carrito');
     ///AÑADIR AL CARRITO UN PRODUCTO
-    Route::post('/carrito/{idproducto}', [carritoController::class,'agregarProducto'])->name('carrito.agregar');
+    Route::post('/carrito/agregar/{idproducto}', [carritoController::class,'agregarProducto'])->name('carrito.agregar');
+    //////ELIMINAR PRODUCTO DEL CARRITO
+    Route::post('/carrito/eliminar/{idproducto}', [carritoController::class,'eliminarProducto'])->name('carrito.eliminar');
+    //////ELIMINAR PRODUCTO DEL CARRITO
+    Route::post('/carrito/incrementar/{idproducto}', [carritoController::class,'incrementar'])->name('carrito.incrementar');
+
+    ///////ELIMINAR CARRITO AL PAGAR
+    Route::get('/carrito/ecarrito/{status}', [carritoController::class,'eliminarCarrito'])->name('carrito.ecarrito');
+
     /////AGRADECIMIENTO EN CARRITO
-    Route::get('/carrito/{status}', 'carritoController@estado')->name('carrito.estado');
+    // Route::get('/carrito/{status}', 'carritoController@estado')->name('carrito.estado');
     //////PAGAR
     // Route::post('/checkout/{total}',  [PagoController::class,'pay'])->name('checkout');
     // Route::get('/checkout/{total}', 'App\Http\Controllers\PagoController@pay')->name('checkout');

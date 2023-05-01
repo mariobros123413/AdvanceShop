@@ -18,7 +18,7 @@ class PaymentController extends Controller
     private $apiContext;
     public function __construct()
     {
-        $paypalConfig = Config::get(key:'paypal');
+        $paypalConfig = Config::get('paypal');
         $this->apiContext = new ApiContext(
             new OAuthTokenCredential(
                 'AbeMslKVUFU1u7IhHKO06EHbe8DkhGdg-9CLAF8VBZ2i9yNjwFmCicGa5-ehRmOiDnhd4P_jXsCZSs8D',
@@ -99,10 +99,10 @@ class PaymentController extends Controller
 
         if ($result->getState() === 'approved') {
             $status = 'Gracias! El pago a través de PayPal se ha ralizado correctamente.';
-            return redirect('/carrito')->with(compact('status'));
+            return redirect()->route('carrito.ecarrito', compact('status'));
         }
 
         $status = 'Lo sentimos! El pago a través de PayPal no se pudo realizar.';
-        return redirect('/carrito')->with(compact('status'));
+        return redirect()->route('carrito.ecarrito', compact('status'));
     }
 }

@@ -24,6 +24,8 @@
     tr:nth-child(even) {
         background-color: #f2f2f2;
     }
+
+    .btn-primary {}
 </style>
 
 <body class="skin-blue sidebar-mini">
@@ -61,8 +63,19 @@
                                             <td>{{ $producto->precio }}</td>
                                             <td>{{ $subtotal }}</td>
                                             <td>
-                                                <a href="#" class="btn btn-danger btn-sm"><i
-                                                        class="fa fa-trash"></i></a>
+                                                <form
+                                                    action="{{ route('carrito.eliminar', ['idproducto' => $producto->nombproducto]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="add-cart">Eliminar</button>
+                                                </form>
+                                                <form
+                                                    action="{{ route('carrito.incrementar', ['idproducto' => $producto->nombproducto]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="add-cart">Aumentar Cantidad</button>
+                                                </form>
+
                                             </td>
                                         </tr>
                                         <?php

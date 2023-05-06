@@ -11,6 +11,18 @@ class PerfilController extends Controller
     public function index()
     {
         $direccionEnvio = direccionenvio::where('iddireccionenvio', auth()->user()->id)->first();
+        if ($direccionEnvio == null) {
+            direccionenvio::create([
+                'iddireccionenvio' => auth()->user()->id,
+                'nombre' => 'Nombre',
+                'calle' => 'Tu calle,',
+                'numcasa' => 0,
+                'ciudad' => 'Tu ciudad'
+            ]);
+
+
+            $direccionEnvio = direccionenvio::where('iddireccionenvio', auth()->user()->id)->first();
+        }
 
         return view('perfil', compact('direccionEnvio'));
     }

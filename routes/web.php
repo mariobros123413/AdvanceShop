@@ -4,7 +4,6 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\carritoController;
-use App\Http\Livewire\ShopComponent;
 use Livewire\Livewire;
 use App\Http\Livewire\MostrarProductos;
 use App\Http\Livewire\GestionarProductos;
@@ -13,7 +12,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Livewire\CrearCategoria;
 use App\Http\Livewire\GestionarCategoria;
 use App\Http\Controllers\PerfilController;
-
+use App\Http\Controllers\PedidosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +54,9 @@ Route::middleware('auth')->group(function () {
     //////////MOSTRAR PRODUCTOS EN TIENDA
     Route::get('/producto', [MostrarProductos::class,'render'])->name('productos');
     Route::get('/', 'App\Http\Controllers\productoController@index')->name('productos.index'); //productos en welcome
-    Route::view('pedidos', 'pedidos')->name('pedidos'); // view('ruta de la vista', )
+
+    ///////MOSTRAR MIS PEDIDOS
+    Route::get('/pedido', [PedidosController::class,'index'])->name('pedido');
 
     /////VER EL CARRITO
     Route::get('/carrito', [carritoController::class,'index'])->name('carrito');
@@ -69,27 +70,35 @@ Route::middleware('auth')->group(function () {
     ///////ELIMINAR CARRITO AL PAGAR
     Route::get('/carrito/ecarrito/{status}', [carritoController::class,'eliminarCarrito'])->name('carrito.ecarrito');
 
-    /////AGRADECIMIENTO EN CARRITO
-    // Route::get('/carrito/{status}', 'carritoController@estado')->name('carrito.estado');
     //////PAGAR
-    // Route::post('/checkout/{total}',  [PagoController::class,'pay'])->name('checkout');
-    // Route::get('/checkout/{total}', 'App\Http\Controllers\PagoController@pay')->name('checkout');
-    // Route::get('/paypal/{total}', 'App\Http\Controllers\PayPalService')->name('paypal');
     Route::post('/paypal', [PaymentController::class,'payWithPaypal'])->name('paypal');
 
      Route::get('/status', [PaymentController::class,'payPalStatus'])->name('status'); //procesar status del pago
-    // Route::get('/status', 'PaymentController@payPalStatus')->name('status');
 
-//RUTAS DESDE EL ADMINISTRADOR\\\
+/////RUTAS DESDE EL ADMINISTRADOR\\\
     //////MOSTRAR PRODUCTOS
     Route::get('/producto', [MostrarProductos::class,'render'])->name('productos');
     //CREAR PRODUCTOS
-    Route::post('/dashboard', 'App\Http\Livewire\GestionarProductos@CrearProducto')->name('CrearProducto');
+    Route::post('/crear', 'App\Http\Livewire\GestionarProductos@crearProducto')->name('crear.producto');
+    // Route::post('/crear', [GestionarProductos::class,'crearProducto'])->name('crear.producto');
+    ///EDITAR PRODUCTOS
+    Route::post('/editar/{idproducto}', [GestionarProductos::class,'editarProducto'])->name('editar.producto');
+    ///ELIMINAR PRODUCTOS
+    Route::post('/eliminar/{idproducto}', [GestionarProductos::class,'eliminarProducto'])->name('eliminar.producto');
+
 
     //////MOSTRAR CATEGORIA
     Route::get('/categoria', [GestionarCategoria::class,'render'])->name('categorias');
     /////CREAR CATEGORIA
-    Route::GET('/categorias', 'App\Http\Livewire\GestionarCategoria@CrearCategoria')->name('CrearCategoria');
+    Route::post('/crear', [GestionarCategoria::class,'crearCategoria'])->name('crear.categoria');
+    ///EDITAR CATEGORIA
+    Route::post('/crear/{idcategoria}', 'App\Http\Livewire\GestionarCategoria@editarCategoria')->name('editar.categoria');
+
+    ///ELIMINAR CATEGORIA
+     Route::post('/eliminar/{idcategoria}', [GestionarCategoria::class,'eliminarCategoria'])->name('eliminar.categoria');
+    // Route::post('/eliminar/{idcategoria}', 'App\Http\Livewire\GestionarCategoria@eliminarCategoria')->name('eliminar.categoria');
+    // Route::post('/eliminar/{idcategoria}', '\App\Http\Livewire\GestionarCategoria@eliminarCategoria')->name('eliminar.categoria');
+
 // Route::view('dashboard.dashboard', 'dashboard.dashboard')->name('dashboard');
 //  Route::get('/dashboard', function () {
 //     return view('/dashboard/dashboard');

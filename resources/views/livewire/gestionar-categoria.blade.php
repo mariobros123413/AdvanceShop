@@ -88,7 +88,8 @@
             .table td button:hover {
                 background-color: #3182CE;
             }
-            .col{
+
+            .col {
                 background-color: #4CAF50;
             }
         </style>
@@ -116,9 +117,84 @@
                         <td>{{ $categoria->nombcategoria }}</td>
                         <td>{{ $categoria->descripcion }}</td>
                         <td>
-                            <button>Editar</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#modal-editar-{{ $categoria->idcategoria }}">
+                                Editar
+                            </button>
+                            <!-- Modal para editar el categoria -->
+                            <div class="modal fade" id="modal-editar-{{ $categoria->idcategoria }}" tabindex="-1"
+                                role="dialog" aria-labelledby="modal-editar-{{ $categoria->idcategoria }}-titulo"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modal-editar-{{ $categoria->idcategoria }}-titulo">
+                                                Editar categoria</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Formulario para editar el categoria -->
+                                            <form method="POST" action="{{ route('editar.categoria', $categoria->idcategoria) }}">
+                                                @csrf
+                                                <div>
+                                                    <label for="nombcategoria">Nombre de la categoria: </label>
+                                                    <input type="text" name="nombcategoria"
+                                                        value="{{ $categoria->nombcategoria }}">
+                                                </div>
+                                                <div>
+                                                    <label for="nombcategoria">Descripción: </label>
+                                                    <input type="text" name="descripcion"
+                                                        value="{{ $categoria->descripcion }}">
+                                                </div>
+                                                <button type="submit">Guardar cambios</button>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancelar</button>
+                                            </form>
 
-                            <button class="col">Eliminar</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#modal-eliminar-{{ $categoria->idcategoria }}">
+                                Eliminar
+                            </button>
+                            <!-- Modal para editar el categoria -->
+                            <div class="modal fade" id="modal-eliminar-{{ $categoria->idcategoria }}" tabindex="-1"
+                                role="dialog" aria-labelledby="modal-editar-{{ $categoria->idcategoria }}-titulo"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modal-eliminar-{{ $categoria->idcategoria }}-titulo">
+                                                Eliminar categoria</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Formulario para editar el categoria -->
+                                            <form method="POST"
+                                                action="{{ route('eliminar.categoria', $categoria->idcategoria) }}">
+                                                
+                                                @csrf
+                                                <div>
+                                                    <label for="nombcategoria">Estás seguro de Eliminar este categoria?
+                                                    </label>
+                                                </div>
+                                                <button type="submit">Aceptar</button>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancelar</button>
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

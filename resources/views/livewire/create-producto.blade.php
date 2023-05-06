@@ -1,57 +1,74 @@
 <div>
-    <button onclick="abrirVentana()">Agregrar un Producto</button>
+    <button type="button" class="btn btn-primary red" data-toggle="modal" data-target="#modal-crear-producto">
+        Agregar un Producto
+    </button>
 
-
-    <script>
-        function abrirVentana() {
-
-            var ventana = window.open("", "ventanaEmergente", "width=400,height=400");
-            ventana.document.write(`
-            <form method="POST" action="{{ route('CrearProducto') }}" class="form">
-    @csrf
-    
-    <div class="form-group">
-        <label for="id">id:</label>
-        <input type="text" id="id" name="id" class="form-control">
+    <!-- Modal para crear el producto -->
+    <div class="modal" tabindex="-1" role="dialog" id="modal-crear-producto">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Crear Producto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ url('crear.producto') }}">
+                        @csrf
+                        <div>
+                            <label for="idproducto">ID del producto: </label>
+                            <input type="text" name="idproducto" value="{{ old('idproducto') }}">
+                            @if ($errors->has('idproducto'))
+                                <span>{{ $errors->first('idproducto') }}</span>
+                            @endif
+                        </div>
+                        <div>
+                            <label for="nombproducto">Nombre del producto: </label>
+                            <input type="text" name="nombproducto" value="{{ old('nombproducto') }}">
+                            @if ($errors->has('nombproducto'))
+                                <span>{{ $errors->first('nombproducto') }}</span>
+                            @endif
+                        </div>
+                        <div>
+                            <label for="descripcion">Descripción: </label>
+                            <input type="text" name="descripcion" value="{{ old('descripcion') }}">
+                            @if ($errors->has('descripcion'))
+                                <span>{{ $errors->first('descripcion') }}</span>
+                            @endif
+                        </div>
+                        <div>
+                            <label for="precio">Precio: </label>
+                            <input type="text" name="precio" value="{{ old('precio') }}">
+                            @if ($errors->has('precio'))
+                                <span>{{ $errors->first('precio') }}</span>
+                            @endif
+                        </div>
+                        <div>
+                            <label for="marca">Marca: </label>
+                            <input type="text" name="marca" value="{{ old('marca') }}">
+                            @if ($errors->has('marca'))
+                                <span>{{ $errors->first('marca') }}</span>
+                            @endif
+                        </div>
+                        <div>
+                            <label for="idcategoria">Categoría: </label>
+                            <input type="text" name="idcategoria" value="{{ old('idcategoria') }}">
+                            @if ($errors->has('idcategoria'))
+                                <span>{{ $errors->first('idcategoria') }}</span>
+                            @endif
+                        </div>
+                        <div>
+                            <label for="stock">Stock: </label>
+                            <input type="number" name="stock" value="{{ old('stock') }}">
+                            @if ($errors->has('stock'))
+                                <span>{{ $errors->first('stock') }}</span>
+                            @endif
+                        </div>
+                        <button type="submit">Crear producto</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" class="form-control">
-    </div>
-    
-    <div class="form-group">
-        <label for="descripcion">Descripción:</label>
-        <textarea id="descripcion" name="descripcion" class="form-control"></textarea>
-    </div>
-    
-    <div class="form-group">
-        <label for="precio">Precio:</label>
-        <input type="text" id="precio" name="precio" class="form-control">
-    </div>
-
-    <div class="form-group">
-        <label for="marca">Marca:</label>
-        <input type="text" id="marca" name="marca" class="form-control">
-    </div>
-
-    <div class="form-group">
-        <label for="idcategoria">idcategoria:</label>
-        <input type="text" id="idcategoria" name="idcategoria" class="form-control">
-    </div>
-    
-    <div class="form-group">
-        <label for="stock">Stock:</label>
-        <input type="text" id="stock" name="stock" class="form-control">
-    </div>
-    
-    <input type="submit" value="Crear" class="btn btn-primary">
-</form>
-`);
-        }
-    </script>
-
-
-
-
 </div>

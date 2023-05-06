@@ -16,8 +16,9 @@ class direccionenvio extends Model
     protected $fillable = [
 
         'iddireccionenvio',
+        'nombre',
         'calle',
-        'numCasa',
+        'numcasa',
         'ciudad'
 
     ];

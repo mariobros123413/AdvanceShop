@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\models\carrito;
 use App\models\producto;
+use App\models\pedido;
+use App\models\pedidoproducto;
 use App\models\User;
 use Illuminate\Http\Request;
 
@@ -86,8 +88,25 @@ class carritoController extends Controller
             // Obtener todos los productos en el carrito para el usuario actual
             $carritoProductos = carrito::where('idusers', auth()->user()->id)->get();
 
+
+            $pedido = new pedido();
+
+            $pedido->idusers = auth()->user()->id;
+            $pedido->estadoenvio = 'Pendiente';
+            $pedido->fecha = now();
+            $pedido->save();
+            $idpedido = DB::getPdo()->lastInsertId();
+
             // Recorrer todos los productos del carrito y disminuir el stock en la tabla `producto`
             foreach ($carritoProductos as $carritoProducto) {
+
+                $pedidoproducto = new pedidoproducto();
+                $pedidoproducto->idpedido = $idpedido;
+                $pedidoproducto->idproducto = $carritoProducto->idproducto;
+                $pedidoproducto->cantidad = $carritoProducto->cantidad;
+                $pedidoproducto->save();
+
+
                 $producto = producto::find($carritoProducto->idproducto);
                 $producto->stock -= $carritoProducto->cantidad;
                 $producto->save();

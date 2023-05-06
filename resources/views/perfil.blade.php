@@ -200,6 +200,46 @@
     .contact__info__label {
         margin-top: 20px;
     }
+
+    .cancel {
+        width: 142px;
+        font-weight: 700;
+        border: 1px solid;
+        box-sizing: border-box;
+        font-family: inherit;
+        margin: 0;
+        text-align: center;
+        text-decoration: none;
+        vertical-align: bottom;
+        background-color: transparent;
+        border-radius: var(--btn-border-radius, 20px);
+        color: #1A9797;
+        display: inline-block;
+        font-size: .875rem;
+        min-height: 40px;
+        min-width: 88px;
+        padding: 9.5px 20px;
+    }
+
+    .save {
+        width: 142px;
+        font-weight: 700;
+        border: 1px solid;
+        box-sizing: border-box;
+        font-family: inherit;
+        margin: 0;
+        text-align: center;
+        text-decoration: none;
+        vertical-align: bottom;
+        background-color: #1A9797;
+        border-radius: var(--btn-border-radius, 20px);
+        color: #FFFFFFFF;
+        display: inline-block;
+        font-size: .875rem;
+        min-height: 40px;
+        min-width: 88px;
+        padding: 13px;
+    }
 </style>
 
 <head>
@@ -215,14 +255,14 @@
 </head>
 
 <body>
-<script>
-function cancelarEdicion(formId) {
-    document.getElementById(formId).style.display = 'none';
-    document.getElementById(formId).style.display = 'none';
-    document.getElementById(formId).style.display = 'none';
-    document.getElementById(formId).style.display = 'none';
-}
-</script>
+    <script>
+        function cancelarEdicion(formId) {
+            document.getElementById(formId).style.display = 'none';
+            document.getElementById(formId).style.display = 'none';
+            document.getElementById(formId).style.display = 'none';
+            document.getElementById(formId).style.display = 'none';
+        }
+    </script>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
@@ -240,7 +280,7 @@ function cancelarEdicion(formId) {
                             <a class="nav-link" href="/">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pedidos') }}">Tus Pedidos</a>
+                            <a class="nav-link" href="{{ route('pedido') }}">Tus Pedidos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('productos') }}">Productos</a>
@@ -301,14 +341,27 @@ function cancelarEdicion(formId) {
                     </div>
                 </div>
                 <div id="edit_username_form" style="display:none;">
-                    <form method="POST" action="{{ route('perfil.cambiarusername') }}">
+                    <form method="POST" action="{{ route('perfil.cambiarusername') }}" onsubmit="return validarForm()">
                         @csrf
                         <label for="username">Nuevo nombre de usuario:</label>
                         <input type="text" name="username" id="username">
-                        <button type="submit">Guardar cambios</button>
-                        <button type="button" onclick="cancelarEdicion('edit_username_form')">Cancelar</button>
+                        <button class="save" type="submit">Guardar cambios</button>
+                        <button class="cancel" type="button"
+                            onclick="cancelarEdicion('edit_username_form')">Cancelar</button>
                     </form>
                 </div>
+
+                <script>
+                    function validarForm() {
+                        var username = document.getElementById("username").value.trim();
+                        if (username === "") {
+                            alert("El campo Nuevo nombre de usuario es obligatorio");
+                            return false;
+                        }
+                        return true;
+                    }
+                </script>
+
             </div>
             <div class="separator hide-for-mweb"></div>
             <div class="individual__block hide-for-mweb">
@@ -407,26 +460,50 @@ function cancelarEdicion(formId) {
 
                         </div>
                         <div id="edit_telefono_form" style="display:none;">
-                            <form method="POST" action="{{ route('perfil.cambiartelefono') }}">
+                            <form method="POST" action="{{ route('perfil.cambiartelefono') }}"
+                                onsubmit="return validarForm2()">
                                 @csrf
-                                <label for="telefono">Nuevo telefono de usuario:</label>
+                                <label for="telefono">Nuevo número de teléfono:</label>
                                 <input type="text" name="telefono" id="telefono">
-                                <button type="submit">Guardar cambios</button>
-                                <button type="button" onclick="cancelarEdicion('edit_telefono_form')">Cancelar</button>
+                                <button class="save" type="submit">Guardar cambios</button>
+                                <button class="cancel" type="button"
+                                    onclick="cancelarEdicion('edit_telefono_form')">Cancelar</button>
                             </form>
                         </div>
+                        <script>
+                            function validarForm2() {
+                                var username = document.getElementById("telefono").value.trim();
+                                if (username === "") {
+                                    alert("El campo Nuevo número teléfono es obligatorio");
+                                    return false;
+                                }
+                                return true;
+                            }
+                        </script>
 
                     </div>
                 </div>
                 <div id="edit_email_form" style="display:none;">
-                    <form method="POST" action="{{ route('perfil.cambiaremail') }}">
+                    <form method="POST" action="{{ route('perfil.cambiaremail') }}"
+                        onsubmit="return validarForm3()">
                         @csrf
                         <label for="username">Nuevo correo de usuario:</label>
                         <input type="text" name="email" id="email">
-                        <button type="submit">Guardar cambios</button>
-                        <button type="button" onclick="cancelarEdicion('edit_email_form')">Cancelar</button>
+                        <button class="save" type="submit">Guardar cambios</button>
+                        <button class="cancel" type="button"
+                            onclick="cancelarEdicion('edit_email_form')">Cancelar</button>
                     </form>
                 </div>
+                <script>
+                    function validarForm3() {
+                        var username = document.getElementById("username").value.trim();
+                        if (username === "") {
+                            alert("El campo Nuevo correo de usuario es obligatorio");
+                            return false;
+                        }
+                        return true;
+                    }
+                </script>
             </div>
             <div class="separator"></div>
             <div id="individual_personal_info" class="individual__block">
@@ -469,31 +546,45 @@ function cancelarEdicion(formId) {
                             </div>
 
                         </div>
-                        
+
 
                     </div>
-                    
+
                 </div>
                 <div id="edit_direccion_form" style="display:none;">
-                            <form method="POST" action="{{ route('perfil.cambiardireccion') }}">
-                                @csrf
-                                <label for="nombre">Nombre del destinatario : </label>
-                                <input type="text" name="nombre" id="nombre">
+                    <form method="POST" action="{{ route('perfil.cambiardireccion') }}" onsubmit="return validarForm4()">
+                        @csrf
+                        <label for="nombre">Nombre del destinatario : </label>
+                        <input type="text" name="nombre" id="nombre">
 
-                                <label for="calle">Nombre de la calle : </label>
-                                <input type="text" name="calle" id="calle">
-                                
-                                <label for="numcasa">Número de casa : </label>
-                                <input type="text" name="numcasa" id="numcasa">
+                        <label for="calle">Nombre de la calle : </label>
+                        <input type="text" name="calle" id="calle">
 
-                                <label for="ciudad">Ciudad : </label>
-                                <input type="text" name="ciudad" id="ciudad">
+                        <label for="numcasa">Número de casa : </label>
+                        <input type="text" name="numcasa" id="numcasa">
 
-                                <button type="submit">Guardar cambios</button>
-                                        <button type="button" onclick="cancelarEdicion('edit_direccion_form')">Cancelar</button>
+                        <label for="ciudad">Ciudad : </label>
+                        <input type="text" name="ciudad" id="ciudad">
 
-                            </form>
-                        </div>
+                        <button class="save" type="submit">Guardar cambios</button>
+                        <button class="cancel" type="button"
+                            onclick="cancelarEdicion('edit_direccion_form')">Cancelar</button>
+
+                    </form>
+                </div>
+                <script>
+                    function validarForm4() {
+                        var username = document.getElementById("nombre").value.trim();
+                        var username2 = document.getElementById("calle").value.trim();
+                        var username3 = document.getElementById("numcasa").value.trim();
+                        var username4 = document.getElementById("ciudad").value.trim();
+                        if (username === "" || username2 ==="" || username3 ==="" || username4 ==="") {
+                            alert("Rellene todos los campos por favor");
+                            return false;
+                        }
+                        return true;
+                    }
+                </script>
             </div>
             <div class="separator"></div>
         </div>

@@ -111,5 +111,9 @@ class GestionarProductos extends Component
           ->update(['stock' => 0]);
         return redirect()->back()->with('success', 'Producto eliminado correctamente');
     }
+    
+    public function pdfproducto(){
 
+        return view('reporte');
+    }
 }

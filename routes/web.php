@@ -8,6 +8,7 @@ use App\Http\Controllers\carritoController;
 use Livewire\Livewire;
 use App\Http\Livewire\MostrarProductos;
 use App\Http\Livewire\GestionarProductos;
+use App\Http\Livewire\ReportePdf;
 use App\Http\Controllers\productoController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Livewire\CrearCategoria;
@@ -103,6 +104,12 @@ Route::middleware('auth')->group(function () {
     //////CAMBIAR ESTADO ENVIO
     Route::post('/pedidos/estado', [PedidoCreado::class,'cambiarEstado'])->name('pedidos.cambiarestado');
 
+    //////GENERAR PDFS
+    Route::get('/reporte', [ReportePdf::class,'render'])->name('reporte');
+    Route::get('/reporte/producto', [ReportePdf::class,'pdfproducto'])->name('productos.pdf');
+    Route::get('/reporte/categoria', [ReportePdf::class,'pdfcategoria'])->name('categorias.pdf');
+    Route::get('/reporte/pedidos', [ReportePdf::class,'pdfpedidos'])->name('pedidos.pdf');
+    Route::get('/reporte/usuario', [ReportePdf::class,'pdfusuario'])->name('usuarios.pdf');
 
 // Route::view('dashboard.dashboard', 'dashboard.dashboard')->name('dashboard');
 //  Route::get('/dashboard', function () {

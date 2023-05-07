@@ -91,6 +91,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th class="cursor-pointer" wire:click="order('idproducto')">ID</th>
                 <th class="cursor-pointer" wire:click="order('marca')">Marca</th>
                 <th class="cursor-pointer" wire:click="order('nombproducto')">Nombre</th>
                 <th class="cursor-pointer" wire:click="order('precio')">Precio ($)</th>
@@ -103,6 +104,7 @@
 
             @foreach ($productos as $producto)
                 <tr>
+                    <td>{{ $producto->idproducto }}</td>
                     <td>{{ $producto->marca }}</td>
                     <td>{{ $producto->nombproducto }}</td>
                     <td>{{ $producto->precio }}</td>

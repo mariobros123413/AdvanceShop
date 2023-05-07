@@ -2,7 +2,11 @@
     <button type="button" class="btn btn-primary red" data-toggle="modal" data-target="#modal-crear-producto">
         Agregar un Producto
     </button>
-
+    <style>
+        .flexasd{
+            color:#831a1a;
+        }
+    </style>
     <!-- Modal para crear el producto -->
     <div class="modal" tabindex="-1" role="dialog" id="modal-crear-producto">
         <div class="modal-dialog" role="document">
@@ -14,7 +18,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{ url('crear.producto') }}">
+                    <form method="POST" action="{{ route('crear.producto') }}">
                         @csrf
                         <div>
                             <label for="idproducto">ID del producto: </label>
@@ -63,6 +67,13 @@
                             <input type="number" name="stock" value="{{ old('stock') }}">
                             @if ($errors->has('stock'))
                                 <span>{{ $errors->first('stock') }}</span>
+                            @endif
+                        </div>
+                        <div>
+                            <label for="stock">URL imagen: </label>
+                            <input type="text" name="imagen_url" value="{{ old('imagen_url') }}">
+                            @if ($errors->has('imagen_url'))
+                                <span>{{ $errors->first('imagen_url') }}</span>
                             @endif
                         </div>
                         <button type="submit">Crear producto</button>

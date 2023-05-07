@@ -2,7 +2,11 @@
    <button type="button" class="btn btn-primary red" data-toggle="modal" data-target="#modal-crear-categoria">
         Agregar una Categoría
     </button>
-
+<style>
+        .flexasd{
+            color:#831a1a;
+        }
+    </style>
     <!-- Modal para crear el categoria -->
     <div class="modal" tabindex="-1" role="dialog" id="modal-crear-categoria">
         <div class="modal-dialog" role="document">

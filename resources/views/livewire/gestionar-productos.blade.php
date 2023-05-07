@@ -176,6 +176,10 @@
                                                     <label for="precio">Stock: </label>
                                                     <input type="number" name="stock" value="{{ $producto->stock }}">
                                                 </div>
+                                                <div>
+                                                    <label for="imagen_url">URL de Imágen: </label>
+                                                    <input type="text" name="imagen_url" value="{{ $producto->imagen_url }}">
+                                                </div>
                                                 <button type="submit">Guardar cambios</button>
                                                 <button type="button" class="btn btn-secondary"
                                                     data-dismiss="modal">Cancelar</button>
@@ -190,7 +194,7 @@
                                 data-target="#modal-eliminar-{{ $producto->idproducto }}">
                                 Eliminar
                             </button>
-                            <!-- Modal para editar el producto -->
+                            <!-- Modal para eliminar el producto -->
                             <div class="modal fade" id="modal-eliminar-{{ $producto->idproducto }}" tabindex="-1"
                                 role="dialog" aria-labelledby="modal-editar-{{ $producto->idproducto }}-titulo"
                                 aria-hidden="true">
@@ -204,7 +208,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <!-- Formulario para editar el producto -->
+                                            <!-- Formulario para eliminar el producto -->
                                             <form method="POST"
                                                 action="{{ route('eliminar.producto', $producto->idproducto) }}">
                                                 @csrf

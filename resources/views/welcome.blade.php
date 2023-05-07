@@ -47,11 +47,16 @@
 
     .img-container {
         position: relative;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+        padding: 20px;
     }
 
     .img-container img {
-        width: 100%;
-        height: auto;
+        max-width: 100%;
+        max-height: 300px;
         display: block;
     }
 
@@ -92,6 +97,8 @@
         font-weight: bold;
         border-radius: 5px;
         transition: all 0.3s ease;
+        margin-top: auto;
+        margin-bottom:auto;
     }
 
     .add-cart:hover {
@@ -146,7 +153,7 @@
                                 <a class="nav-link" href="{{ route('login') }}">Carrito</a>
                             @endif
                         </li>
-                        
+
                         @if (Auth::check())
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('perfil') }}">Mi perfil</a>
@@ -185,7 +192,7 @@
                 <div class="producto">
                     <a href="#">
                         <div class="img-container">
-                            <img src="{{ $producto->imagen }}" alt="{{ $producto->nombre }}">
+                            <img src="{{ $producto->imagen_url }}" alt="{{ $producto->nombre }}">
                             <span class="promo">{{ $producto->marca }}</span>
                         </div>
                     </a>

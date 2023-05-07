@@ -81,8 +81,8 @@ Route::middleware('auth')->group(function () {
     //////MOSTRAR PRODUCTOS
     Route::get('/producto', [MostrarProductos::class,'render'])->name('productos');
     //CREAR PRODUCTOS
-    Route::post('/crear', 'App\Http\Livewire\GestionarProductos@crearProducto')->name('crear.producto');
-    // Route::post('/crear', [GestionarProductos::class,'crearProducto'])->name('crear.producto');
+    //Route::post('/crear', 'App\Http\Livewire\GestionarProductos@crearProducto')->name('crear.producto');
+     Route::post('/crear/producto', [GestionarProductos::class,'crearProducto'])->name('crear.producto');
     ///EDITAR PRODUCTOS
     Route::post('/editar/{idproducto}', [GestionarProductos::class,'editarProducto'])->name('editar.producto');
     ///ELIMINAR PRODUCTOS

@@ -53,18 +53,12 @@ class GestionarProductos extends Component
             'precio' => $request->get('precio'),
             'marca' => $request->get('marca'),
             'idcategoria' => $request->get('idcategoria'),
-            'stock' => $request->get('stock')
+            'stock' => $request->get('stock'),
+            'imagen_url' => $request->get('imagen_url')
         ];
 
         producto::create($producto);
 
-
-
-        $total = producto::all()->count();
-
-
-
-        //Session::flash('message', 'Felicitaciones .! Niño Registrado Correctamente ...');
         return redirect('/dashboard');
     }
     public function editarProducto(Request $request, $id)
@@ -90,6 +84,7 @@ class GestionarProductos extends Component
         $producto->idcategoria = $request->idcategoria;
         $producto->stock = $request->stock;
         $producto->precio = $request->precio;
+        $producto->imagen_url = $request->imagen_url;
         // Agrega aquí los demás campos del formulario que quieras actualizar
 
         // Guardar los cambios en la base de datos

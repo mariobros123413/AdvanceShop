@@ -327,6 +327,11 @@ return [
             'route'  => 'pedidos',
             'icon' => 'fas fa-fw fa-car'
         ],
+        [
+            'text' => 'Generar reportes',
+            'route'  => 'reporte',
+            'icon' => 'fas fa-fw fa-car'
+        ],
     ],
 
     /*

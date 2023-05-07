@@ -146,15 +146,7 @@
                                 <a class="nav-link" href="{{ route('login') }}">Carrito</a>
                             @endif
                         </li>
-                        @if (Auth::check())
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('perfil') }}">Mi perfil</a>
-                            </li>
-                        @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>
-                            </li>
-                        @endif
+                        
                         @if (Auth::check())
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('perfil') }}">Mi perfil</a>
@@ -162,7 +154,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
+                                    document.getElementById('logout-form').submit();">
                                     Cerrar Sesión
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -170,6 +162,8 @@
                                     @csrf
                                 </form>
                             </li>
+                        @else
+                            <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>
                         @endif
                     </ul>
                 </div>
@@ -199,12 +193,15 @@
 
                         <h3>{{ $producto->nombproducto }}</h3>
                         <strong>${{ $producto->precio }}</strong>
-                        <form action="{{ route('carrito.agregar', ['idproducto' => $producto->idproducto]) }}"
-                            method="POST">
-                            @csrf
-                            <input type="hidden" name="id_producto" value="{{ $producto->idproducto }}">
-                            <button type="submit" class="add-cart">Añadir al carrito</button>
-                        </form>
+                        @if (Auth::check())
+                            <form action="{{ route('carrito.agregar', ['idproducto' => $producto->idproducto]) }}"
+                                method="POST">
+                                @csrf
+                                <input type="hidden" name="id_producto" value="{{ $producto->idproducto }}">
+                                <button type="submit" class="add-cart">Añadir al carrito</button>
+                            </form>
+                        @endif
+
 
                     </div>
                 </div>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class pedido extends Model
 {
     protected $table = 'pedido';
-    //protected $primaryKey = ['idpedido'];
+    protected $primaryKey = ['idpedido'];
 
     public $incrementing = false;
     public $timestamps = false;

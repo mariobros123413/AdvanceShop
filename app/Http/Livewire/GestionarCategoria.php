@@ -81,8 +81,8 @@ class GestionarCategoria extends Component
 
     public function eliminarCategoria(Request $request, $id)
     {
-        dd($id);
-        $categoria = Categoria::find($id);
+        dd($request);
+        $categoria = categoria::find($id);
         
 
         if (!$categoria) {

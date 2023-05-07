@@ -107,8 +107,8 @@ class GestionarProductos extends Component
             return redirect()->back()->with('error', 'El producto no existe');
         }
 
-        $producto->delete();
-
+        producto::where('idproducto', $request->idproducto)
+          ->update(['stock' => 0]);
         return redirect()->back()->with('success', 'Producto eliminado correctamente');
     }
 

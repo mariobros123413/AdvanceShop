@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\PedidoCreado;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\carritoController;
@@ -95,9 +96,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/crear/{idcategoria}', 'App\Http\Livewire\GestionarCategoria@editarCategoria')->name('editar.categoria');
 
     ///ELIMINAR CATEGORIA
-     Route::post('/eliminar/{idcategoria}', [GestionarCategoria::class,'eliminarCategoria'])->name('eliminar.categoria');
-    // Route::post('/eliminar/{idcategoria}', 'App\Http\Livewire\GestionarCategoria@eliminarCategoria')->name('eliminar.categoria');
-    // Route::post('/eliminar/{idcategoria}', '\App\Http\Livewire\GestionarCategoria@eliminarCategoria')->name('eliminar.categoria');
+     //Route::post('/eliminar/{idcategoria}', [GestionarCategoria::class,'eliminarCategoria'])->name('eliminar.categoria');
+
+    ///MOSTRAR PEDIDOS
+    Route::get('/pedidos', [PedidoCreado::class,'render'])->name('pedidos');
+    //////CAMBIAR ESTADO ENVIO
+    Route::post('/pedidos/estado', [PedidoCreado::class,'cambiarEstado'])->name('pedidos.cambiarestado');
+
 
 // Route::view('dashboard.dashboard', 'dashboard.dashboard')->name('dashboard');
 //  Route::get('/dashboard', function () {

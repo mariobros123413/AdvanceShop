@@ -313,72 +313,19 @@ return [
         ],
         ['header' => 'Gestiones'],
         [
-            'text' => 'Gestión de categoría',
+            'text' => 'Gestión de categorías',
             'route'  => 'categorias',
             'icon' => 'fas fa-fw fa-car'
-            // 'data' => [
-            //     'test-one' => 'content-one',
-            //     'test-two' => 'content-two',
-            // ],
         ],
+        // [
+        //     'text' => 'Gestión de productos',
+        //     'route'  => 'productos',
+        //     'icon' => 'fas fa-fw fa-car'
+        // ],
         [
-            'text' => 'Edición de Categorías',
-            // 'url'  => 'livewire.crear-categoria',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'Gestionar Categorías',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'Ver Pedidos'],
-        [
-            'text'       => 'Cancelados',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'En Progreso',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'Completados',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'text' => 'Gestión de pedidos',
+            'route'  => 'pedidos',
+            'icon' => 'fas fa-fw fa-car'
         ],
     ],
 

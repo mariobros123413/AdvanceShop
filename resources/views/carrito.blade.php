@@ -79,22 +79,38 @@
                             <a class="nav-link" href="/">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pedido') }}">Tus Pedidos</a>
+                            @if (Auth::check())
+                                <a class="nav-link" href="{{ url('pedido') }}">Tus Pedidos</a>
+                            @else
+                                <a class="nav-link" href="{{ route('login') }}">Tus Pedidos</a>
+                            @endif
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('productos') }}">Productos</a>
+                            @if (Auth::check())
+                                <a class="nav-link" href="{{ url('carrito') }}">Carrito</a>
+                            @else
+                                <a class="nav-link" href="{{ route('login') }}">Carrito</a>
+                            @endif
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('carrito') }}">Carrito</a>
-                        </li>
+
                         @if (Auth::check())
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('perfil') }}">Mi perfil</a>
                             </li>
-                        @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>
+                                <a class="nav-link" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    Cerrar Sesión
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
                             </li>
+                        @else
+                            <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>
                         @endif
                     </ul>
                 </div>

@@ -280,22 +280,38 @@
                             <a class="nav-link" href="/">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pedido') }}">Tus Pedidos</a>
+                            @if (Auth::check())
+                                <a class="nav-link" href="{{ url('pedido') }}">Tus Pedidos</a>
+                            @else
+                                <a class="nav-link" href="{{ route('login') }}">Tus Pedidos</a>
+                            @endif
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('productos') }}">Productos</a>
+                            @if (Auth::check())
+                                <a class="nav-link" href="{{ url('carrito') }}">Carrito</a>
+                            @else
+                                <a class="nav-link" href="{{ route('login') }}">Carrito</a>
+                            @endif
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('carrito') }}">Carrito</a>
-                        </li>
+
                         @if (Auth::check())
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('perfil') }}">Mi perfil</a>
                             </li>
-                        @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>
+                                <a class="nav-link" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    Cerrar Sesión
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
                             </li>
+                        @else
+                            <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>
                         @endif
                     </ul>
                 </div>
@@ -341,7 +357,8 @@
                     </div>
                 </div>
                 <div id="edit_username_form" style="display:none;">
-                    <form method="POST" action="{{ route('perfil.cambiarusername') }}" onsubmit="return validarForm()">
+                    <form method="POST" action="{{ route('perfil.cambiarusername') }}"
+                        onsubmit="return validarForm()">
                         @csrf
                         <label for="username">Nuevo nombre de usuario:</label>
                         <input type="text" name="username" id="username">
@@ -387,7 +404,8 @@
                             <div class="individual__details-action-view-content"><span>
                                     <div class="contactInfoDisplay">
                                         <div>
-                                            <div id="contact_info_label" class="contactInfoDisplay__label">Dirección de
+                                            <div id="contact_info_label" class="contactInfoDisplay__label">Dirección
+                                                de
                                                 Correo
                                             </div>
                                             <div id="Email address_address_display_infotip"
@@ -552,7 +570,8 @@
 
                 </div>
                 <div id="edit_direccion_form" style="display:none;">
-                    <form method="POST" action="{{ route('perfil.cambiardireccion') }}" onsubmit="return validarForm4()">
+                    <form method="POST" action="{{ route('perfil.cambiardireccion') }}"
+                        onsubmit="return validarForm4()">
                         @csrf
                         <label for="nombre">Nombre del destinatario : </label>
                         <input type="text" name="nombre" id="nombre">
@@ -578,7 +597,7 @@
                         var username2 = document.getElementById("calle").value.trim();
                         var username3 = document.getElementById("numcasa").value.trim();
                         var username4 = document.getElementById("ciudad").value.trim();
-                        if (username === "" || username2 ==="" || username3 ==="" || username4 ==="") {
+                        if (username === "" || username2 === "" || username3 === "" || username4 === "") {
                             alert("Rellene todos los campos por favor");
                             return false;
                         }

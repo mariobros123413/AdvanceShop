@@ -170,7 +170,7 @@
                                 </form>
                             </li>
                         @else
-                            <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>
+                            <a class="nav-link" href="{{ route('register') }}">Registrarse</a>
                         @endif
                     </ul>
                 </div>
@@ -208,8 +208,6 @@
                                 <button type="submit" class="add-cart">Añadir al carrito</button>
                             </form>
                         @endif
-
-
                     </div>
                 </div>
             @endif

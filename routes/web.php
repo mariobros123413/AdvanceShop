@@ -15,7 +15,7 @@ use App\Http\Livewire\CrearCategoria;
 use App\Http\Livewire\GestionarCategoria;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\PedidosController;
-
+use App\Http\Livewire\GestionUsuarios;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -111,6 +111,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/reporte/pedidos', [ReportePdf::class,'pdfpedidos'])->name('pedidos.pdf');
     Route::get('/reporte/usuario', [ReportePdf::class,'pdfusuario'])->name('usuarios.pdf');
 
+    /////MOSTRAR USUARIOS DE LA PÁGINA
+    Route::get('/usuarios', [GestionUsuarios::class,'render'])->name('usuarios');
+    
+    Route::post('/usuarios/{iddireccionenvio}', [GestionUsuarios::class,'editardireccionenvio'])->name('editar.direccionenvio');
 // Route::view('dashboard.dashboard', 'dashboard.dashboard')->name('dashboard');
 //  Route::get('/dashboard', function () {
 //     return view('/dashboard/dashboard');

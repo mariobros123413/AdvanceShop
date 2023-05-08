@@ -328,10 +328,16 @@ return [
             'icon' => 'fas fa-fw fa-car'
         ],
         [
+            'text' => 'Gestión de usuarios',
+            'route'  => 'usuarios',
+            'icon' => 'fas fa-fw fa-car'
+        ],
+        [
             'text' => 'Generar reportes',
             'route'  => 'reporte',
             'icon' => 'fas fa-fw fa-car'
         ],
+        
     ],
 
     /*

@@ -18,7 +18,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{ route('crear.categoria') }}">
+                    <form method="POST" action="{{ route('crear.categoria') }} ">
                         @csrf
                         <div>
                             <label for="idcategoria">ID de la categoria: </label>

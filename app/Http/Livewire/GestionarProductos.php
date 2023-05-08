@@ -45,7 +45,16 @@ class GestionarProductos extends Component
     public function crearProducto(Request $request)
     {
 
-
+        $request->validate([
+            'idproducto' => 'required',
+            'nombproducto' => 'required',
+            'descripcion' => 'required',
+            'precio' => 'required',
+            'marca' => 'required',
+            'idcategoria' => 'required',
+            'stock' => 'required',
+            'imagen_url' => 'required',
+        ]);
         $producto = [
             'idproducto' => $request->get('idproducto'),
             'nombproducto' => $request->get('nombproducto'),
@@ -103,11 +112,12 @@ class GestionarProductos extends Component
         }
 
         producto::where('idproducto', $request->idproducto)
-          ->update(['stock' => 0]);
+            ->update(['stock' => 0]);
         return redirect()->back()->with('success', 'Producto eliminado correctamente');
     }
-    
-    public function pdfproducto(){
+
+    public function pdfproducto()
+    {
 
         return view('reporte');
     }

@@ -9,14 +9,13 @@
             crossorigin="anonymous"></script>
     @stop
     @section('css')
-        <link rel="stylesheet" href="/css/admin_custom.css">
 
     @stop
     @section('content')
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        </div>
         <style>
+            .content{
+                padding:50px;
+            }
             .flexasd {
                 display: flex;
                 background: #830510;

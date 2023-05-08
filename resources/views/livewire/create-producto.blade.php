@@ -25,6 +25,8 @@
                             <input type="text" name="idproducto" value="{{ old('idproducto') }}">
                             @if ($errors->has('idproducto'))
                                 <span>{{ $errors->first('idproducto') }}</span>
+                            @else
+                                <span class="hint">Este campo es obligatorio</span>
                             @endif
                         </div>
                         <div>
@@ -32,6 +34,8 @@
                             <input type="text" name="nombproducto" value="{{ old('nombproducto') }}">
                             @if ($errors->has('nombproducto'))
                                 <span>{{ $errors->first('nombproducto') }}</span>
+                            @else
+                                <span class="hint">Este campo es obligatorio</span>
                             @endif
                         </div>
                         <div>
@@ -39,6 +43,8 @@
                             <input type="text" name="descripcion" value="{{ old('descripcion') }}">
                             @if ($errors->has('descripcion'))
                                 <span>{{ $errors->first('descripcion') }}</span>
+                            @else
+                                <span class="hint">Este campo es obligatorio</span>
                             @endif
                         </div>
                         <div>
@@ -46,6 +52,8 @@
                             <input type="text" name="precio" value="{{ old('precio') }}">
                             @if ($errors->has('precio'))
                                 <span>{{ $errors->first('precio') }}</span>
+                            @else
+                                <span class="hint">Este campo es obligatorio</span>
                             @endif
                         </div>
                         <div>
@@ -53,6 +61,8 @@
                             <input type="text" name="marca" value="{{ old('marca') }}">
                             @if ($errors->has('marca'))
                                 <span>{{ $errors->first('marca') }}</span>
+                            @else
+                                <span class="hint">Este campo es obligatorio</span>
                             @endif
                         </div>
                         <div>
@@ -60,6 +70,8 @@
                             <input type="text" name="idcategoria" value="{{ old('idcategoria') }}">
                             @if ($errors->has('idcategoria'))
                                 <span>{{ $errors->first('idcategoria') }}</span>
+                            @else
+                                <span class="hint">Este campo es obligatorio</span>
                             @endif
                         </div>
                         <div>
@@ -67,10 +79,12 @@
                             <input type="number" name="stock" value="{{ old('stock') }}">
                             @if ($errors->has('stock'))
                                 <span>{{ $errors->first('stock') }}</span>
+                            @else
+                                <span class="hint">Este campo es obligatorio</span>
                             @endif
                         </div>
                         <div>
-                            <label for="stock">URL imagen: </label>
+                            <label for="imagen_url">URL imagen: </label>
                             <input type="text" name="imagen_url" value="{{ old('imagen_url') }}">
                             @if ($errors->has('imagen_url'))
                                 <span>{{ $errors->first('imagen_url') }}</span>
@@ -78,7 +92,9 @@
                         </div>
                         <button type="submit">Crear producto</button>
                     </form>
+
                 </div>
+                
             </div>
         </div>
     </div>

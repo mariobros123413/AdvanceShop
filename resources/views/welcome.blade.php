@@ -18,6 +18,8 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        padding-left: 50px;
+        padding-right: 50px;
     }
 
     .producto {
@@ -98,13 +100,26 @@
         border-radius: 5px;
         transition: all 0.3s ease;
         margin-top: auto;
-        margin-bottom:auto;
+        margin-bottom: auto;
     }
 
     .add-cart:hover {
         background-color: #fff;
         color: #2A9FA2;
         border: 2px solid #2A9FA2;
+    }
+    .add-cartC{
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #738383;
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        margin-top: auto;
+        margin-bottom: auto;
     }
 </style>
 
@@ -117,11 +132,34 @@
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
         crossorigin="anonymous"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Carga de archivo de JavaScript de Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</head>
+
+
 
 </head>
 
 <body>
+    <Style>
+        .modal-dialog {
+            max-width: 60%;
+            margin: 1.75rem auto;
+        }
 
+        .modal-content {
+            padding: 1.5rem;
+        }
+
+        .modal-header {
+            border-bottom: none;
+        }
+
+        .modal-footer {
+            border-top: none;
+        }
+    </style>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
@@ -129,7 +167,7 @@
                         src="https://scontent.fvvi1-1.fna.fbcdn.net/v/t1.15752-9/342650874_943976150279978_1244660785714073715_n.png?_nc_cat=111&ccb=1-7&_nc_sid=ae9488&_nc_ohc=E3GKfjqOBToAX9QVSEI&_nc_ht=scontent.fvvi1-1.fna&oh=03_AdQwIcsWfQ4USU_LywMiihpF7She2Vhe7zAElAy-dOxxVw&oe=646BCDB2"
                         class="logo">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -200,6 +238,63 @@
 
                         <h3>{{ $producto->nombproducto }}</h3>
                         <strong>${{ $producto->precio }}</strong>
+                        <button type="button" class="add-cart" data-toggle="modal"
+                            data-target="#modal-ver-{{ $producto->idproducto }}">
+                            Ver Producto
+                        </button>
+                        <!-- Modal para ver el producto -->
+                        <div class="modal fade" id="modal-ver-{{ $producto->idproducto }}" tabindex="-1"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modal-ver-{{ $producto->idproducto }}-titulo">
+                                            {{ $producto->nombproducto }}</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <img src="{{ $producto->imagen_url }}" alt="{{ $producto->nombre }}"
+                                                    class="img-fluid">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ $producto->descripcion }}</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="left-footer">
+                                            <strong>Precio:</strong> ${{ $producto->precio }}
+                                        </div>
+                                        @if (Auth::check())
+                                            <form
+                                                action="{{ route('carrito.agregar', ['idproducto' => $producto->idproducto]) }}"
+                                                method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id_producto"
+                                                    value="{{ $producto->idproducto }}">
+                                                <button type="button" class="add-cartC"
+                                                    data-dismiss="modal" >Cerrar</button>
+                                                <button type="submit" class="add-cart"
+                                                    style=" float: right;">Añadir al carrito</button>
+                                            </form>
+                                        @else
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cerrar</button>
+                                        @endif
+                                    </div>
+
+                                    <style>
+                                        .left-footer {
+                                            width: 50%;
+                                            float: left;
+                                        }
+                                    </style>
+
+                                </div>
+                            </div>
+                        </div>
                         @if (Auth::check())
                             <form action="{{ route('carrito.agregar', ['idproducto' => $producto->idproducto]) }}"
                                 method="POST">

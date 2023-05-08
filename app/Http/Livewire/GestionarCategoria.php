@@ -45,7 +45,11 @@ class GestionarCategoria extends Component
     public function crearCategoria(Request $request)
     {
 
-
+        $request->validate([
+            'idcategoria' => 'required',
+            'nombcateria' => 'required',
+            'descripcion' => 'required',
+        ]);
         $categoria = [
             'idcategoria' => $request->get('idcategoria'),
             'nombcategoria' => $request->get('nombcategoria'),

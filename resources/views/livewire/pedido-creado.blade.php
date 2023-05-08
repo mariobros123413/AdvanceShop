@@ -66,7 +66,7 @@
                                 data-target="#modal-ver-{{ $pedido->idpedido }}">
                                 Ver Productos
                             </button>
-                            <!-- Modal para editar el producto -->
+                            <!-- Modal para ver el producto -->
                             <div class="modal fade" id="modal-ver-{{ $pedido->idpedido }}" tabindex="-1"
                                 aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">

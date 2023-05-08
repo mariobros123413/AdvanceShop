@@ -43,7 +43,6 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <!-- Formulario para editar el producto -->
                                                     </div>
                                                 </div>
                                             </div>

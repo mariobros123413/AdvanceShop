@@ -1,47 +1,120 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<div class="login-container">
+    <style>
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 16px;
+            border-radius: 4px;
+            border: 1px solid #d3d3d3;
+            font-size: 16px;
+            color: #555555;
+            background-color: #f6f6f6;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #2196f3;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0d8bf4;
+        }
+
+        a {
+            color: #2196f3;
+            text-decoration: none;
+            margin-top: 16px;
+            font-size: 14px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom:20px;
+        }
+
+        .navbar-brand img {
+            height: 150px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            background-color: #fff;
+        }
+    </style>
+    <nav class="navbar">
+        <div class="navbar-header">
+            <a href="/" class="navbar-brand">
+                <img src="vendor/adminlte/dist/img/AdminLTELogo.png" alt="Nombre de la marca" />
+            </a>
         </div>
+    </nav>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+    <div class="login-form">
+        <!-- Session Status -->
+        <div class="mb-4" :status="session('status')">
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                <!-- Email Address -->
+                <div>
+                    <label for="email">Email</label>
+                    <input id="email" type="email" name="email" :value="old('email')" required autofocus
+                        autocomplete="username" />
+                    @error('email')
+                        <div>{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <label for="password">Password</label>
+                    <input id="password" type="password" name="password" required autocomplete="current-password" />
+                    @error('password')
+                        <div>{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <!-- Remember Me -->
+                <div>
+                    <input id="remember_me" type="checkbox" name="remember">
+                    <label for="remember_me">Remember me</label>
+                </div>
+
+                <button type="submit">Log in</button>
+            </form>
         </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ml-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    </div>
+</div>

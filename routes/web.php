@@ -110,7 +110,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/reporte/categoria', [ReportePdf::class,'pdfcategoria'])->name('categorias.pdf');
     Route::get('/reporte/pedidos', [ReportePdf::class,'pdfpedidos'])->name('pedidos.pdf');
     Route::get('/reporte/usuario', [ReportePdf::class,'pdfusuario'])->name('usuarios.pdf');
-
+    Route::get('/factura/pdf/{idpedido}', [ReportePdf::class,'pdffactura'])->name('factura.pdf');
     /////MOSTRAR USUARIOS DE LA PÁGINA
     Route::get('/usuarios', [GestionUsuarios::class,'render'])->name('usuarios');
     

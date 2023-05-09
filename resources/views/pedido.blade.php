@@ -145,13 +145,16 @@
                                         <th>Precio unitario</th>
                                         <th>Subtotal</th>
                                         <th>Estado de Envío</th>
+                                        <th>Generar Recibo</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($productos->groupBy('idpedido') as $pedido => $detalles)
                                         <?php $total = 0; ?>
                                         @foreach ($detalles as $producto)
-                                            <?php $subtotal = $producto->cantidad * $producto->precio; ?>
+                                            <?php $subtotal = $producto->cantidad * $producto->precio;
+                                            ?>
                                             <tr>
                                                 @if ($loop->first)
                                                     <td rowspan="{{ $detalles->count() }}">{{ $pedido }}</td>
@@ -161,13 +164,24 @@
                                                 <td>{{ $producto->precio }}</td>
                                                 <td>{{ $subtotal }}</td>
                                                 <td>{{ $producto->estadoenvio }}</td>
+
                                             </tr>
                                             <?php $total += $subtotal; ?>
                                         @endforeach
                                         <tr>
                                             <td colspan="4">Total</td>
                                             <td>{{ $total }}</td>
-                                            <td></td>
+                                            <td>
+
+                                            </td>
+
+                                            <td>
+                                                <a href="{{ route('factura.pdf', ['idpedido' => $producto->idpedido]) }}"
+                                                    class="btn btn-primary">
+                                                    Generar Factura
+                                                </a>
+                                            </td>
+
                                         </tr>
                                     @endforeach
 
